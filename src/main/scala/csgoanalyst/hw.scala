@@ -1,4 +1,4 @@
-package sparking
+package csgoanalyst
 
 import org.apache.spark.SparkContext, SparkContext._
 import com.typesafe.config.Config
