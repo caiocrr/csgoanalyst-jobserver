@@ -1,7 +1,9 @@
 package sparking
-package jobserver
 
-object GetAttackers extends SparkJob {
+import org.apache.spark.SparkContext, SparkContext._
+import com.typesafe.config.Config
+
+object GetAttackers extends spark.jobserver.SparkJob {
 
   override def runJob(sc: SparkContext, config: Config) = {
     
