@@ -1,7 +1,7 @@
 package sparking
 package jobserver
 
-object GetAttackers extends spark.jobserver.SparkJob {
+object GetAttackers extends SparkJob {
 
   override def runJob(sc: SparkContext, config: Config) = {
     
