@@ -1,8 +1,10 @@
-trait AnalystJob extends spark.jobserver.SparkJob with GetDemo {
+package sparking
+package jobserver
 
 object GetAttackers extends spark.jobserver.SparkJob {
 
   override def runJob(sc: SparkContext, config: Config) = {
+    
     val demo = sc.textFile("file:/home/caiocrr/Desktop/csgodemos/test1.txt").
           filter(line => line.startsWith("victim"))
 
