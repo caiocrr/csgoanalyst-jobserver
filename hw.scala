@@ -1,10 +1,6 @@
 trait AnalystJob extends spark.jobserver.SparkJob with GetDemo {
 
-  // Validation is not really needed in this example
-  def validate(sc: SparkContext, config: Config): spark.jobserver.SparkJobValidation = spark.jobserver.SparkJobValid
-}
-
-object GetAttackers extends AnalystJob {
+object GetAttackers extends spark.jobserver.SparkJob {
 
   override def runJob(sc: SparkContext, config: Config) = {
     val demo = sc.textFile("file:/home/caiocrr/Desktop/csgodemos/test1.txt").
@@ -16,5 +12,7 @@ object GetAttackers extends AnalystJob {
     
     attackersFiltered.collect();
   }
+  
+  override def validate(sc: SparkContext, config: Config): spark.jobserver.SparkJobValidation = spark.jobserver.SparkJobValid
 }
 
