@@ -5,7 +5,8 @@ import org.apache.spark._
 import org.apache.spark.SparkContext._
 import scala.util.Try
 import org.apache.spark.rdd.RDD
-import org.apache.hadoop.fs.FileSystem
+import java.io.File
+
 
 
 object GetAttackers extends spark.jobserver.SparkJob with spark.jobserver.NamedRddSupport {
@@ -34,16 +35,18 @@ object GetAttackers extends spark.jobserver.SparkJob with spark.jobserver.NamedR
 object getDemoName extends spark.jobserver.SparkJob {
 
    override def runJob(sc: SparkContext, config: Config): Any = {
-        import java.io.File
-        val files = Array()
-        for (file <- new File("/home/caiocrr/Desktop/csgodemos").listFiles) {
-          files:+file
-        }     
-        
-        val distFiles = sc.parallelize(files)
-        distFiles.collect();
-        
+      val files = getListOfFiles("/home/caiocrr/Desktop/csgodemos")        
   }
+  
+  def getListOfFiles(dir: String):List[File] = {
+    val d = new File(dir)
+    if (d.exists && d.isDirectory) {
+        d.listFiles.filter(_.isFile).toList
+    } else {
+        List[File]()
+    }
+  }
+    
 
   override def validate(sc: SparkContext, config: Config): spark.jobserver.SparkJobValidation = {
     spark.jobserver.SparkJobValid
