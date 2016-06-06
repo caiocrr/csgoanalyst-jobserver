@@ -4,11 +4,21 @@ import org.apache.spark.SparkContext, SparkContext._
 import com.typesafe.config.Config
 
 object GetAttackers extends spark.jobserver.SparkJob {
-
-  override def runJob(sc: SparkContext, config: Config) = {
+  def main(args: Array[String]) {
+    val conf = new SparkConf().setMaster("local[4]").setAppName("csgoanalyst")
+    val sc = new SparkContext(conf)
+    val config = ConfigFactory.parseString("")
+    val results = runJob(sc, config)
     
+    println(results)
+  }
+
+  override def validate(sc: SparkContext, config: Config): SparkJobValidation = {
+  }
+
+  override def runJob(sc: SparkContext, config: Config): Any = {
     val demo = sc.textFile("file:/home/caiocrr/Desktop/csgodemos/test1.txt").
-          filter(line => line.startsWith("victim"))
+      filter(line => line.startsWith("victim"))
 
     val attackersFiltered = demo.
           map(line => line.split(',')).
@@ -16,7 +26,11 @@ object GetAttackers extends spark.jobserver.SparkJob {
     
     attackersFiltered.take(1);
   }
-  
-  def validate(sc: SparkContext, config: Config): spark.jobserver.SparkJobValidation = spark.jobserver.SparkJobValid
 }
 
+
+
+
+
+
+ 
