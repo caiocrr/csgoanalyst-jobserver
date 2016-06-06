@@ -1,9 +1,11 @@
 package csgoanalyst
 
-import org.apache.spark.SparkContext, SparkContext._
-import com.typesafe.config.Config
+import com.typesafe.config.{Config, ConfigFactory}
+import org.apache.spark._
+import org.apache.spark.SparkContext._
 
-object GetAttackers extends spark.jobserver.SparkJob {
+
+object GetAttackers extends SparkJob {
   def main(args: Array[String]) {
     val conf = new SparkConf().setMaster("local[4]").setAppName("csgoanalyst")
     val sc = new SparkContext(conf)
