@@ -6,14 +6,14 @@ import org.apache.spark.SparkContext._
 
 
 object GetAttackers extends spark.jobserver.SparkJob {
-  def main(args: Array[String]) {
-    val conf = new SparkConf().setMaster("local[4]").setAppName("csgoanalyst")
-    val sc = new SparkContext(conf)
-    val config = ConfigFactory.parseString("")
-    val results = runJob(sc, config)
-    println(results)
-
-  }
+//  def main(args: Array[String]) {
+//    val conf = new SparkConf().setMaster("local[4]").setAppName("csgoanalyst")
+//    val sc = new SparkContext(conf)
+//    val config = ConfigFactory.parseString("")
+//    val results = runJob(sc, config)
+//    println(results)
+//
+//  }
 
   override def validate(sc: SparkContext, config: Config): spark.jobserver.SparkJobValidation = {
     spark.jobserver.SparkJobValid
