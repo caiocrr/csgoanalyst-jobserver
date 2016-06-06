@@ -35,15 +35,15 @@ object GetAttackers extends spark.jobserver.SparkJob with spark.jobserver.NamedR
 object getDemoName extends spark.jobserver.SparkJob {
 
    override def runJob(sc: SparkContext, config: Config): Any = {
-      val files = getListOfFiles("/home/caiocrr/Desktop/csgodemos")        
+      val files = getListOfFiles("/home/caiocrr/Desktop/csgodemos") 
+      val rddFiles = sc.parallelize(files)
+      files.collect()
   }
   
   def getListOfFiles(dir: String):List[File] = {
     val d = new File(dir)
     if (d.exists && d.isDirectory) {
-        val rdd = d.listFiles.filter(_.isFile).toList
-        rdd.collect()
-        
+        d.listFiles.filter(_.isFile).toList        
     } else {
         List[File]()
     }
