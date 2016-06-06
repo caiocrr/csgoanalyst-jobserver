@@ -37,7 +37,7 @@ object getDemoName extends spark.jobserver.SparkJob {
    override def runJob(sc: SparkContext, config: Config): Any = {
       val files = getListOfFiles("/home/caiocrr/Desktop/csgodemos") 
       val rddFiles = sc.parallelize(files)
-      files.collect()
+      rddFiles.collect()
   }
   
   def getListOfFiles(dir: String):List[File] = {
