@@ -5,7 +5,7 @@ import org.apache.spark._
 import org.apache.spark.SparkContext._
 
 
-object GetAttackers extends SparkJob {
+object GetAttackers extends spark.jobserver.SparkJob {
   def main(args: Array[String]) {
     val conf = new SparkConf().setMaster("local[4]").setAppName("csgoanalyst")
     val sc = new SparkContext(conf)
@@ -15,7 +15,7 @@ object GetAttackers extends SparkJob {
     println(results)
   }
 
-  override def validate(sc: SparkContext, config: Config): SparkJobValidation = {
+  override def validate(sc: SparkContext, config: Config): spark.jobserver.SparkJobValidation = {
   }
 
   override def runJob(sc: SparkContext, config: Config): Any = {
