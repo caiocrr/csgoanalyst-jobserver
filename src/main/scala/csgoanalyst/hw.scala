@@ -15,7 +15,7 @@ object GetAttackers extends spark.jobserver.SparkJob {
     println(results)
   }
 
-  def validate(sc: SparkContext, config: Config): spark.jobserver.SparkJobValidation
+  override def validate(sc: SparkContext, config: Config): spark.jobserver.SparkJobValidation
   
   override def runJob(sc: SparkContext, config: Config): Any = {
     val demo = sc.textFile("file:/home/caiocrr/Desktop/csgodemos/test1.txt").
