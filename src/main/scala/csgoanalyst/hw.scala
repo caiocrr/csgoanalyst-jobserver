@@ -5,6 +5,7 @@ import org.apache.spark._
 import org.apache.spark.SparkContext._
 import scala.util.Try
 import org.apache.spark.rdd.RDD
+import org.apache.hadoop.fs.FileSystem
 
 
 object GetAttackers extends spark.jobserver.SparkJob with spark.jobserver.NamedRddSupport {
@@ -22,8 +23,7 @@ object GetAttackers extends spark.jobserver.SparkJob with spark.jobserver.NamedR
     
     val attackers = demo.map(line => line.split(',')).map(fields => Array(fields(9),fields(10),fields(11),fields(12),fields(13),fields(14),fields(15),fields(16),fields(17),fields(18),fields(19)))
     
-    attackers.collect()
-    
+    attackers.collect()   
     
     
    }
@@ -31,17 +31,15 @@ object GetAttackers extends spark.jobserver.SparkJob with spark.jobserver.NamedR
 }
 
 
-object WordCountExample extends spark.jobserver.SparkJob {
+object getDemoName extends spark.jobserver.SparkJob {
+
+   override def runJob(sc: SparkContext, config: Config): Any = {
+    FileSystem.get(sc.hadoopConfiguration()).listFiles("/home/caiocrr/Desktop/csgodemos", true)
+  }
 
   override def validate(sc: SparkContext, config: Config): spark.jobserver.SparkJobValidation = {
-    Try(config.getString("input.string"))
-      .map(x => spark.jobserver.SparkJobValid)
-      .getOrElse(spark.jobserver.SparkJobInvalid("No input.string config param"))
-  }
-
-  override def runJob(sc: SparkContext, config: Config): Any = {
-    sc.parallelize(config.getString("input.string").split(" ").toSeq).countByValue
-  }
+    spark.jobserver.SparkJobValid
+  } 
 }
 
 
