@@ -2,7 +2,7 @@
 resolvers += "Ooyala Bintray" at "http://dl.bintray.com/ooyala/maven"
 
 
-libraryDependencies += Seq (
+libraryDependencies ++= Seq (
   ("org.apache.spark" %% "spark-core" % "1.1.1").
     exclude("org.mortbay.jetty", "servlet-api").
     exclude("commons-beanutils", "commons-beanutils-core").
