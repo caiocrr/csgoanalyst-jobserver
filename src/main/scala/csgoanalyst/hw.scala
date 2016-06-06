@@ -34,7 +34,7 @@ object GetAttackers extends spark.jobserver.SparkJob with spark.jobserver.NamedR
 object getDemoName extends spark.jobserver.SparkJob {
 
    override def runJob(sc: SparkContext, config: Config): Any = {
-    FileSystem.get(sc.hadoopConfiguration()).listFiles("/home/caiocrr/Desktop/csgodemos", true)
+     for (file <- new File("/home/caiocrr/Desktop/csgodemos").listFiles) { processFile(file) }
   }
 
   override def validate(sc: SparkContext, config: Config): spark.jobserver.SparkJobValidation = {
