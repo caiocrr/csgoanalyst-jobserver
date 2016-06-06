@@ -21,5 +21,8 @@ libraryDependencies ++= Seq (
     exclude("com.esotericsoftware.minlog", "minlog").
     exclude("junit", "junit").
     exclude("org.slf4j", "log4j12"),
-  "ooyala.cnd" % "job-server" % "0.6.2" % "provided"
+  "ooyala.cnd" % "job-server" % "0.4.0" % "provided"
 )
+
+resolvers += "Job Server Bintray" at "https://dl.bintray.com/spark-jobserver/maven"
+libraryDependencies += "spark.jobserver" %% "job-server-api" % "0.6.2" % "provided"
