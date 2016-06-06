@@ -35,7 +35,15 @@ object getDemoName extends spark.jobserver.SparkJob {
 
    override def runJob(sc: SparkContext, config: Config): Any = {
         import java.io.File
-        for (file <- new File("/home/caiocrr/Desktop/csgodemos").listFiles) { processFile(file) }     
+        val files = Array()
+        val distFiles;
+        for (file <- new File("/home/caiocrr/Desktop/csgodemos").listFiles) {
+          files:+file
+        }     
+        
+        distFiles = sc.parallelize(files)
+        distFiles.collect();
+        
   }
 
   override def validate(sc: SparkContext, config: Config): spark.jobserver.SparkJobValidation = {
