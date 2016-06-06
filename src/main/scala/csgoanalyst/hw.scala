@@ -17,6 +17,6 @@ object GetAttackers extends spark.jobserver.SparkJob {
     attackersFiltered.collect();
   }
   
-  override def validate(sc: SparkContext, config: Config): spark.jobserver.SparkJobValidation = spark.jobserver.SparkJobValid
+  def validate(sc: SparkContext, config: Config): spark.jobserver.SparkJobValidation = spark.jobserver.SparkJobValid
 }
 
