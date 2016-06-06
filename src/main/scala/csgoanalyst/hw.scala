@@ -31,19 +31,19 @@ object GetAttackers extends spark.jobserver.SparkJob {
 }
 
 
-object WordCountExample extends SparkJob {
+object WordCountExample extends spark.jobserver.SparkJob {
   def main(args: Array[String]) {
-    val conf = new SparkConf().setMaster("local[4]").setAppName("WordCountExample")
-    val sc = new SparkContext(conf)
+    val conf = new spark.jobserver.SparkConf().setMaster("local[4]").setAppName("WordCountExample")
+    val sc = new spark.jobserver.SparkContext(conf)
     val config = ConfigFactory.parseString("")
     val results = runJob(sc, config)
     println("Result is " + results)
   }
 
-  override def validate(sc: SparkContext, config: Config): SparkJobValidation = {
+  override def validate(sc: SparkContext, config: Config): spark.jobserver.SparkJobValidation = {
     Try(config.getString("input.string"))
-      .map(x => SparkJobValid)
-      .getOrElse(SparkJobInvalid("No input.string config param"))
+      .map(x => spark.jobserver.SparkJobValid)
+      .getOrElse(spark.jobserver.SparkJobInvalid("No input.string config param"))
   }
 
   override def runJob(sc: SparkContext, config: Config): Any = {
