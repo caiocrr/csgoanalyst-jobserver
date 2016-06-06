@@ -36,12 +36,11 @@ object getDemoName extends spark.jobserver.SparkJob {
    override def runJob(sc: SparkContext, config: Config): Any = {
         import java.io.File
         val files = Array()
-        val distFiles;
         for (file <- new File("/home/caiocrr/Desktop/csgodemos").listFiles) {
           files:+file
         }     
         
-        distFiles = sc.parallelize(files)
+        val distFiles = sc.parallelize(files)
         distFiles.collect();
         
   }
