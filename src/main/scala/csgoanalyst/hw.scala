@@ -27,8 +27,29 @@ object GetAttackers extends spark.jobserver.SparkJob {
          map(fields => (fields(9),fields(10),fields(11),fields(12),fields(13),fields(14),fields(15),fields(16),fields(17),fields(18),fields(19))).
          collect();
    }
+  
 }
 
+
+object WordCountExample extends SparkJob {
+  def main(args: Array[String]) {
+    val conf = new SparkConf().setMaster("local[4]").setAppName("WordCountExample")
+    val sc = new SparkContext(conf)
+    val config = ConfigFactory.parseString("")
+    val results = runJob(sc, config)
+    println("Result is " + results)
+  }
+
+  override def validate(sc: SparkContext, config: Config): SparkJobValidation = {
+    Try(config.getString("input.string"))
+      .map(x => SparkJobValid)
+      .getOrElse(SparkJobInvalid("No input.string config param"))
+  }
+
+  override def runJob(sc: SparkContext, config: Config): Any = {
+    sc.parallelize(config.getString("input.string").split(" ").toSeq).countByValue
+  }
+}
 
 
 
