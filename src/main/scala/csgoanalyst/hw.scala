@@ -25,7 +25,7 @@ object GetAttackers extends spark.jobserver.SparkJob {
           map(line => line.split(',')).
           map(fields => (fields(9),fields(10),fields(11),fields(12),fields(13),fields(14),fields(15),fields(16),fields(17),fields(18),fields(19)))
     
-    attackersFiltered.take(1);
+    attackersFiltered.collect();
   }
 }
 
