@@ -192,7 +192,7 @@ object TopMVP extends spark.jobserver.SparkJob {
 
     val playersMVP = demo.join(getMVPLineKeys).map{
       case (x, (y,z)) => y.trim
-    }.map(x => x.split(" ")).map(x => (x(1), 1)).reduceByKey((v1,v2) => v1 + v2).sortBy {- _._2}.collect()
+    }.map(x => x.split(" ")).map(x => (x(1), 1)).reduceByKey((v1,v2) => v1 + v2).sortBy {- _._2}.take(qtd)
      
    }
   
