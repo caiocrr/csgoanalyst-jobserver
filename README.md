@@ -11,11 +11,11 @@ $ sbt
 
 //deploy jar(scala)
 
-curl --data-binary @csgoanalyst-jobserver/target/scala-2.10/csgoanalyst-jobserver_2.10-0.1-SNAPSHOT.jar localhost:8090/jars/csgoanalyst
+>curl --data-binary @csgoanalyst-jobserver/target/scala-2.10/csgoanalyst-jobserver_2.10-0.1-SNAPSHOT.jar localhost:8090/jars/csgoanalyst
 
 
 
-curl 'localhost:8090/jars'
+>curl 'localhost:8090/jars'
 
 
 
@@ -57,3 +57,53 @@ curl 'localhost:8090/jars'
 //SBT JAR
 
 >sbt package
+
+
+
+
+
+
+
+
+////////////////////////////
+
+//ListDir OK
+curl -X POST 'localhost:8090/jobs?appName=csgoanalyst&classPath=csgoanalyst.ListCamps'
+
+//ListPlayers OK
+curl -H "Content-Type: application/json" -X POST -d '{"qtd":"10","camp":"MLG 2016"}' '192.168.91.128:8090/jobs?appName=csgoanalyst&classPath=csgoanalyst.ListPlayers'
+curl -H "Content-Type: application/json" -X POST -d '{"qtd":"10","camp":"Katowice 2015"}' 'localhost:8090/jobs?appName=csgoanalyst&classPath=csgoanalyst.ListPlayers'
+curl -H "Content-Type: application/json" -X POST -d '{"qtd":"10","camp":"Cologne 2015"}' 'localhost:8090/jobs?appName=csgoanalyst&classPath=csgoanalyst.ListPlayers'
+
+//TopKillers OK
+curl -H "Content-Type: application/json" -X POST -d '{"qtd":"10","camp":"MLG 2016"}' '192.168.91.128:8090/jobs?appName=csgoanalyst&classPath=csgoanalyst.TopKillers'
+curl -H "Content-Type: application/json" -X POST -d '{"qtd":"10","camp":"Katowice 2015"}' 'localhost:8090/jobs?appName=csgoanalyst&classPath=csgoanalyst.TopKillers'
+curl -H "Content-Type: application/json" -X POST -d '{"qtd":"10","camp":"Cologne 2015"}' 'localhost:8090/jobs?appName=csgoanalyst&classPath=csgoanalyst.TopKillers'
+
+//TOP KD(Não tá em ordem)
+curl -H "Content-Type: application/json" -X POST -d '{"qtd":"10","camp":"MLG 2016"}' 'localhost:8090/jobs?appName=csgoanalyst&classPath=csgoanalyst.TopKD'
+curl -H "Content-Type: application/json" -X POST -d '{"qtd":"10","camp":"Katowice 2015"}' 'localhost:8090/jobs?appName=csgoanalyst&classPath=csgoanalyst.TopKD'
+curl -H "Content-Type: application/json" -X POST -d '{"qtd":"10","camp":"Cologne 2015"}' 'localhost:8090/jobs?appName=csgoanalyst&classPath=csgoanalyst.TopKD'
+
+
+//KDEspec OK
+curl -H "Content-Type: application/json" -X POST -d '{"nickname":"adreN","camp":"MLG 2016"}' 'localhost:8090/jobs?appName=csgoanalyst&classPath=csgoanalyst.KDESpec'
+
+
+
+//TopMVP - não funcionando
+curl -H "Content-Type: application/json" -X POST -d '{"qtd":"10","camp":"MLG 2016"}' '192.168.91.128:8090/jobs?appName=csgoanalyst&classPath=csgoanalyst.TopMVP'
+curl -H "Content-Type: application/json" -X POST -d '{"qtd":"10","camp":"Katowice 2015"}' '192.168.91.128:8090/jobs?appName=csgoanalyst&classPath=csgoanalyst.TopMVP'
+curl -H "Content-Type: application/json" -X POST -d '{"qtd":"10","camp":"Cologne 2015"}' '192.168.91.128:8090/jobs?appName=csgoanalyst&classPath=csgoanalyst.TopMVP'
+
+
+
+
+
+
+
+
+files: /home/demo_manager/~
+
+
+curl 'localhost:8090/jobs/jobid'
