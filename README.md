@@ -72,18 +72,27 @@ $ sbt
 
 //ListPlayers OK
 >curl -H "Content-Type: application/json" -X POST -d '{"qtd":"10","camp":"MLG 2016"}' '192.168.91.128:8090/jobs?appName=csgoanalyst&classPath=csgoanalyst.ListPlayers'
+
 >curl -H "Content-Type: application/json" -X POST -d '{"qtd":"10","camp":"Katowice 2015"}' 'localhost:8090/jobs?appName=csgoanalyst&classPath=csgoanalyst.ListPlayers'
+
 >curl -H "Content-Type: application/json" -X POST -d '{"qtd":"10","camp":"Cologne 2015"}' 'localhost:8090/jobs?appName=csgoanalyst&classPath=csgoanalyst.ListPlayers'
+
 
 //TopKillers OK
 >curl -H "Content-Type: application/json" -X POST -d '{"qtd":"10","camp":"MLG 2016"}' '192.168.91.128:8090/jobs?appName=csgoanalyst&classPath=csgoanalyst.TopKillers'
+
 >curl -H "Content-Type: application/json" -X POST -d '{"qtd":"10","camp":"Katowice 2015"}' 'localhost:8090/jobs?appName=csgoanalyst&classPath=csgoanalyst.TopKillers'
+
 >curl -H "Content-Type: application/json" -X POST -d '{"qtd":"10","camp":"Cologne 2015"}' 'localhost:8090/jobs?appName=csgoanalyst&classPath=csgoanalyst.TopKillers'
+
 
 //TOP KD(Não tá em ordem)
 >curl -H "Content-Type: application/json" -X POST -d '{"qtd":"10","camp":"MLG 2016"}' 'localhost:8090/jobs?appName=csgoanalyst&classPath=csgoanalyst.TopKD'
+
 >curl -H "Content-Type: application/json" -X POST -d '{"qtd":"10","camp":"Katowice 2015"}' 'localhost:8090/jobs?appName=csgoanalyst&classPath=csgoanalyst.TopKD'
+
 >curl -H "Content-Type: application/json" -X POST -d '{"qtd":"10","camp":"Cologne 2015"}' 'localhost:8090/jobs?appName=csgoanalyst&classPath=csgoanalyst.TopKD'
+
 
 
 //KDEspec OK
@@ -93,8 +102,11 @@ $ sbt
 
 //TopMVP - não funcionando
 >curl -H "Content-Type: application/json" -X POST -d '{"qtd":"10","camp":"MLG 2016"}' '192.168.91.128:8090/jobs?appName=csgoanalyst&classPath=csgoanalyst.TopMVP'
+
 >curl -H "Content-Type: application/json" -X POST -d '{"qtd":"10","camp":"Katowice 2015"}' '192.168.91.128:8090/jobs?appName=csgoanalyst&classPath=csgoanalyst.TopMVP'
+
 >curl -H "Content-Type: application/json" -X POST -d '{"qtd":"10","camp":"Cologne 2015"}' '192.168.91.128:8090/jobs?appName=csgoanalyst&classPath=csgoanalyst.TopMVP'
+
 
 
 
