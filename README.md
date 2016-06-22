@@ -68,33 +68,33 @@ $ sbt
 ////////////////////////////
 
 //ListDir OK
-curl -X POST 'localhost:8090/jobs?appName=csgoanalyst&classPath=csgoanalyst.ListCamps'
+>curl -X POST 'localhost:8090/jobs?appName=csgoanalyst&classPath=csgoanalyst.ListCamps'
 
 //ListPlayers OK
-curl -H "Content-Type: application/json" -X POST -d '{"qtd":"10","camp":"MLG 2016"}' '192.168.91.128:8090/jobs?appName=csgoanalyst&classPath=csgoanalyst.ListPlayers'
-curl -H "Content-Type: application/json" -X POST -d '{"qtd":"10","camp":"Katowice 2015"}' 'localhost:8090/jobs?appName=csgoanalyst&classPath=csgoanalyst.ListPlayers'
-curl -H "Content-Type: application/json" -X POST -d '{"qtd":"10","camp":"Cologne 2015"}' 'localhost:8090/jobs?appName=csgoanalyst&classPath=csgoanalyst.ListPlayers'
+>curl -H "Content-Type: application/json" -X POST -d '{"qtd":"10","camp":"MLG 2016"}' '192.168.91.128:8090/jobs?appName=csgoanalyst&classPath=csgoanalyst.ListPlayers'
+>curl -H "Content-Type: application/json" -X POST -d '{"qtd":"10","camp":"Katowice 2015"}' 'localhost:8090/jobs?appName=csgoanalyst&classPath=csgoanalyst.ListPlayers'
+>curl -H "Content-Type: application/json" -X POST -d '{"qtd":"10","camp":"Cologne 2015"}' 'localhost:8090/jobs?appName=csgoanalyst&classPath=csgoanalyst.ListPlayers'
 
 //TopKillers OK
-curl -H "Content-Type: application/json" -X POST -d '{"qtd":"10","camp":"MLG 2016"}' '192.168.91.128:8090/jobs?appName=csgoanalyst&classPath=csgoanalyst.TopKillers'
-curl -H "Content-Type: application/json" -X POST -d '{"qtd":"10","camp":"Katowice 2015"}' 'localhost:8090/jobs?appName=csgoanalyst&classPath=csgoanalyst.TopKillers'
-curl -H "Content-Type: application/json" -X POST -d '{"qtd":"10","camp":"Cologne 2015"}' 'localhost:8090/jobs?appName=csgoanalyst&classPath=csgoanalyst.TopKillers'
+>curl -H "Content-Type: application/json" -X POST -d '{"qtd":"10","camp":"MLG 2016"}' '192.168.91.128:8090/jobs?appName=csgoanalyst&classPath=csgoanalyst.TopKillers'
+>curl -H "Content-Type: application/json" -X POST -d '{"qtd":"10","camp":"Katowice 2015"}' 'localhost:8090/jobs?appName=csgoanalyst&classPath=csgoanalyst.TopKillers'
+>curl -H "Content-Type: application/json" -X POST -d '{"qtd":"10","camp":"Cologne 2015"}' 'localhost:8090/jobs?appName=csgoanalyst&classPath=csgoanalyst.TopKillers'
 
 //TOP KD(Não tá em ordem)
-curl -H "Content-Type: application/json" -X POST -d '{"qtd":"10","camp":"MLG 2016"}' 'localhost:8090/jobs?appName=csgoanalyst&classPath=csgoanalyst.TopKD'
-curl -H "Content-Type: application/json" -X POST -d '{"qtd":"10","camp":"Katowice 2015"}' 'localhost:8090/jobs?appName=csgoanalyst&classPath=csgoanalyst.TopKD'
-curl -H "Content-Type: application/json" -X POST -d '{"qtd":"10","camp":"Cologne 2015"}' 'localhost:8090/jobs?appName=csgoanalyst&classPath=csgoanalyst.TopKD'
+>curl -H "Content-Type: application/json" -X POST -d '{"qtd":"10","camp":"MLG 2016"}' 'localhost:8090/jobs?appName=csgoanalyst&classPath=csgoanalyst.TopKD'
+>curl -H "Content-Type: application/json" -X POST -d '{"qtd":"10","camp":"Katowice 2015"}' 'localhost:8090/jobs?appName=csgoanalyst&classPath=csgoanalyst.TopKD'
+>curl -H "Content-Type: application/json" -X POST -d '{"qtd":"10","camp":"Cologne 2015"}' 'localhost:8090/jobs?appName=csgoanalyst&classPath=csgoanalyst.TopKD'
 
 
 //KDEspec OK
-curl -H "Content-Type: application/json" -X POST -d '{"nickname":"adreN","camp":"MLG 2016"}' 'localhost:8090/jobs?appName=csgoanalyst&classPath=csgoanalyst.KDESpec'
+>curl -H "Content-Type: application/json" -X POST -d '{"nickname":"adreN","camp":"MLG 2016"}' 'localhost:8090/jobs?appName=csgoanalyst&classPath=csgoanalyst.KDESpec'
 
 
 
 //TopMVP - não funcionando
-curl -H "Content-Type: application/json" -X POST -d '{"qtd":"10","camp":"MLG 2016"}' '192.168.91.128:8090/jobs?appName=csgoanalyst&classPath=csgoanalyst.TopMVP'
-curl -H "Content-Type: application/json" -X POST -d '{"qtd":"10","camp":"Katowice 2015"}' '192.168.91.128:8090/jobs?appName=csgoanalyst&classPath=csgoanalyst.TopMVP'
-curl -H "Content-Type: application/json" -X POST -d '{"qtd":"10","camp":"Cologne 2015"}' '192.168.91.128:8090/jobs?appName=csgoanalyst&classPath=csgoanalyst.TopMVP'
+>curl -H "Content-Type: application/json" -X POST -d '{"qtd":"10","camp":"MLG 2016"}' '192.168.91.128:8090/jobs?appName=csgoanalyst&classPath=csgoanalyst.TopMVP'
+>curl -H "Content-Type: application/json" -X POST -d '{"qtd":"10","camp":"Katowice 2015"}' '192.168.91.128:8090/jobs?appName=csgoanalyst&classPath=csgoanalyst.TopMVP'
+>curl -H "Content-Type: application/json" -X POST -d '{"qtd":"10","camp":"Cologne 2015"}' '192.168.91.128:8090/jobs?appName=csgoanalyst&classPath=csgoanalyst.TopMVP'
 
 
 
@@ -103,7 +103,4 @@ curl -H "Content-Type: application/json" -X POST -d '{"qtd":"10","camp":"Cologne
 
 
 
-files: /home/demo_manager/~
-
-
-curl 'localhost:8090/jobs/jobid'
+>files: /demo_manager/~
