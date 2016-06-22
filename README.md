@@ -22,28 +22,38 @@ curl 'localhost:8090/jars'
 //create context that will be shared - NAO VAI SER PRECISO
 
 
-curl -X POST 'localhost:8090/contexts/users-context'
+>curl -X POST 'localhost:8090/contexts/users-context'
 
-curl 'localhost:8090/contexts'
+>curl 'localhost:8090/contexts'
 
 
 
 //Run
 
-
 //ADHOC(CONTEXTO TEMPORARIO)
-curl -X POST 'localhost:8090/jobs?appName=csgoanalyst&classPath=csgoanalyst.GetAttackers'
+
+>curl -X POST 'localhost:8090/jobs?appName=csgoanalyst&classPath=csgoanalyst.GetAttackers'
+
+>curl -d "qtd=qtd&camp=camp" 'localhost:8090/jobs?appName=csgoanalyst&classPath=csgoanalyst.GetAttackers'
+
+
 
 
 //PERMANENT CONTEXT
-curl -X POST 'localhost:8090/jobs?appName=csgoanalyst&classPath=csgoanalyst.GetAttackers&context=users-context'
+
+>curl -X POST 'localhost:8090/jobs?appName=csgoanalyst&classPath=csgoanalyst.GetAttackers&context=users-context'
+
 
 
 
 
 //VIEW JOB
-curl 'localhost:8090/jobs/jobid'
+
+>curl 'localhost:8090/jobs/jobid'
+
+
 
 
 //SBT JAR
-sbt package
+
+>sbt package

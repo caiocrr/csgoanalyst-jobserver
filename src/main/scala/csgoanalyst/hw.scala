@@ -6,8 +6,10 @@ import org.apache.spark.SparkContext._
 import scala.util.Try
 import org.apache.spark.rdd.RDD
 import scala.runtime.ScalaRunTime._
+
 import org.apache.spark.rdd.RDD
 import java.io.File
+import collection.mutable.ArrayBuffer
 
 
 object TopKillers extends spark.jobserver.SparkJob {
@@ -19,11 +21,13 @@ object TopKillers extends spark.jobserver.SparkJob {
   
   override def runJob(sc: SparkContext, config: Config): Any = {
     
+    
+    val camp = config.getString("camp")
     val qtd = config.getString("qtd").toInt
     
     var attackersCount: RDD[(String,Int)] = sc.emptyRDD
 
-    val demo = sc.textFile("/home/caiocrr/Desktop/demo_manager/txts/*.txt").
+    var demo = sc.textFile("/home/caiocrr/Desktop/demo_manager/txts/"+camp+"/*.txt").
     filter(line => line.startsWith("victim")).
     filter(line => !line.contains("knife"))
 
@@ -51,12 +55,14 @@ object KDESpec extends spark.jobserver.SparkJob {
   
   override def runJob(sc: SparkContext, config: Config): Any = {
     
+    
+    val camp = config.getString("camp")
     val nickname = config.getString("nickname")
     
     var attackersCount: RDD[(String,Int)] = sc.emptyRDD
     var victimsCount: RDD[(String,Int)] = sc.emptyRDD
             
-    val demo = sc.textFile("/home/caiocrr/Desktop/demo_manager/txts/*.txt").
+    var demo = sc.textFile("/home/caiocrr/Desktop/demo_manager/txts/"+camp+"/*.txt").
     filter(line => line.startsWith("victim")).
     filter(line => !line.contains("knife"))
 
@@ -95,12 +101,14 @@ object TopKD extends spark.jobserver.SparkJob {
   
   override def runJob(sc: SparkContext, config: Config): Any = {
     
+    
+    val camp = config.getString("camp")
     val qtd = config.getString("qtd").toInt
     
     var attackersCount: RDD[(String,Int)] = sc.emptyRDD
     var victimsCount: RDD[(String,Int)] = sc.emptyRDD
             
-    val demo = sc.textFile("/home/caiocrr/Desktop/demo_manager/txts/*.txt").
+    var demo = sc.textFile("/home/caiocrr/Desktop/demo_manager/txts/"+camp+"/*.txt").
     filter(line => line.startsWith("victim")).
     filter(line => !line.contains("knife"))
 
@@ -140,7 +148,9 @@ object ListPlayers extends spark.jobserver.SparkJob {
     
     var playersCount: RDD[(String)] = sc.emptyRDD
      
-    val demo = sc.textFile("/home/caiocrr/Desktop/demo_manager/txts/*.txt").
+    
+    val camp = config.getString("camp")
+    var demo = sc.textFile("/home/caiocrr/Desktop/demo_manager/txts/"+camp+"/*.txt").
     filter(line => line.startsWith("victim"))
 
     val playersName = demo.map(line => line.split(',')).
@@ -171,9 +181,11 @@ object TopMVP extends spark.jobserver.SparkJob {
   override def runJob(sc: SparkContext, config: Config): Any = {
     
 
+    
+    val camp = config.getString("camp")
     val qtd = config.getString("qtd").toInt
     
-    var demo = sc.textFile("/home/caiocrr/Desktop/demo_manager/txts/*.txt").zipWithIndex.map{case (k,v) => (v,k)}
+    var demo = sc.textFile("/home/caiocrr/Desktop/demo_manager/txts/"+camp+"/*.txt").zipWithIndex.map{case (k,v) => (v,k)}
     var getMVPLine = demo.filter(_._2.contains("round_mvp"))
     
     var getMVPLineKeys = getMVPLine.keys.map(x => x+2).zipWithIndex
@@ -185,5 +197,32 @@ object TopMVP extends spark.jobserver.SparkJob {
    }
   
 }
+
+
+object ListCamps extends spark.jobserver.SparkJob {
+
+
+  override def validate(sc: SparkContext, config: Config): spark.jobserver.SparkJobValidation = {
+    spark.jobserver.SparkJobValid
+  }
+  
+  override def runJob(sc: SparkContext, config: Config): Any = {
+
+    val directoryName = "/home/caiocrr/Desktop/demo_manager"
+   
+    val directory = new File(directoryName)
+      val files = directory.listFiles  // this is File[]
+      val dirNames = ArrayBuffer[String]()
+      for (file <- files) {
+        if (file.isDirectory()) {
+          dirNames += file.getName()
+        }
+      }
+    dirNames.toList
+     
+   }
+  
+}
+
 
  
