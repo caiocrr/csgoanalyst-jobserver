@@ -1,4 +1,5 @@
-$ git clone https://github.com/ooyala/spark-jobserver
+$ git clone https://github.com/spark-jobserver/spark-jobserver
+
 $ cd spark-jobserver
 
 
@@ -6,14 +7,17 @@ $ cd spark-jobserver
 
 $ sbt publish-local
 $ sbt
-> re-start
+> job-server/re-start
+
+//build jar
+
+$ cd csgoanalyst-jobserver
+$ sbt package
 
 
 //deploy jar(scala)
 
 >curl --data-binary @csgoanalyst-jobserver/target/scala-2.10/csgoanalyst-jobserver_2.10-0.1-SNAPSHOT.jar localhost:8090/jars/csgoanalyst
-
-
 
 >curl 'localhost:8090/jars'
 
@@ -46,17 +50,9 @@ $ sbt
 
 
 
-
 //VIEW JOB
 
 >curl 'localhost:8090/jobs/jobid'
-
-
-
-
-//SBT JAR
-
->sbt package
 
 
 
@@ -67,7 +63,7 @@ $ sbt
 
 ////////////////////////////
 
-//ListDir OK
+//ListCamps OK
 >curl -X POST 'localhost:8090/jobs?appName=csgoanalyst&classPath=csgoanalyst.ListCamps'
 
 //ListPlayers OK
