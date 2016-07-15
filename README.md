@@ -12,7 +12,7 @@ $ sbt
 //build jar
 
 $ cd csgoanalyst-jobserver
-$ sbt package
+$ sbt assembly
 
 
 //deploy jar(scala)
@@ -82,7 +82,7 @@ $ sbt package
 >curl -H "Content-Type: application/json" -X POST -d '{"qtd":"10","camp":"Cologne 2015"}' 'localhost:8090/jobs?appName=csgoanalyst&classPath=csgoanalyst.TopKillers'
 
 
-//TOP KD(Não tá em ordem)
+//TOP KD(NÃ£o tÃ¡ em ordem)
 >curl -H "Content-Type: application/json" -X POST -d '{"qtd":"10","camp":"MLG 2016"}' 'localhost:8090/jobs?appName=csgoanalyst&classPath=csgoanalyst.TopKD'
 
 >curl -H "Content-Type: application/json" -X POST -d '{"qtd":"10","camp":"Katowice 2015"}' 'localhost:8090/jobs?appName=csgoanalyst&classPath=csgoanalyst.TopKD'
@@ -96,7 +96,7 @@ $ sbt package
 
 
 
-//TopMVP - não funcionando
+//TopMVP - nÃ£o funcionando
 >curl -H "Content-Type: application/json" -X POST -d '{"qtd":"10","camp":"MLG 2016"}' '192.168.91.128:8090/jobs?appName=csgoanalyst&classPath=csgoanalyst.TopMVP'
 
 >curl -H "Content-Type: application/json" -X POST -d '{"qtd":"10","camp":"Katowice 2015"}' '192.168.91.128:8090/jobs?appName=csgoanalyst&classPath=csgoanalyst.TopMVP'
