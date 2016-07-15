@@ -24,7 +24,7 @@ object TopKillers extends spark.jobserver.SparkJob {
     val qtd = config.getString("qtd").toInt
 
     var attackersCount: RDD[(String, Int)] = sc.emptyRDD
-    var demo = sc.textFile("/demo_manager/" + camp + "/*.txt").
+    var demo = sc.textFile("/demo_manager/" + camp + "/*/*.txt").
       filter(line => line.startsWith("victim")).
       filter(line => !line.contains("knife"))
 
@@ -56,7 +56,7 @@ object KDESpec extends spark.jobserver.SparkJob {
     var attackersCount: RDD[(String, Int)] = sc.emptyRDD
     var victimsCount: RDD[(String, Int)] = sc.emptyRDD
 
-    var demo = sc.textFile("/demo_manager/" + camp + "/*.txt").
+    var demo = sc.textFile("/demo_manager/" + camp + "/*/*.txt").
       filter(line => line.startsWith("victim")).
       filter(line => !line.contains("knife"))
 
@@ -99,7 +99,7 @@ object TopKD extends spark.jobserver.SparkJob {
     var attackersCount: RDD[(String, Int)] = sc.emptyRDD
     var victimsCount: RDD[(String, Int)] = sc.emptyRDD
 
-    var demo = sc.textFile("/demo_manager/" + camp + "/*.txt").
+    var demo = sc.textFile("/demo_manager/" + camp + "/*/*.txt").
       filter(line => line.startsWith("victim")).
       filter(line => !line.contains("knife"))
 
@@ -138,7 +138,7 @@ object ListPlayers extends spark.jobserver.SparkJob {
     var playersCount: RDD[(String)] = sc.emptyRDD
 
     val camp = config.getString("camp")
-    var demo = sc.textFile("/demo_manager/" + camp + "/*.txt").
+    var demo = sc.textFile("/demo_manager/" + camp + "/*/*.txt").
       filter(line => line.startsWith("victim"))
 
     val playersName = demo.map(line => line.split(',')).
@@ -166,7 +166,7 @@ object TopMVP extends spark.jobserver.SparkJob {
     val camp = config.getString("camp")
     val qtd = config.getString("qtd").toInt
 
-    var demo = sc.textFile("/demo_manager/" + camp + "/*.txt").zipWithIndex.map { case (k, v) => (v, k) }
+    var demo = sc.textFile("/demo_manager/" + camp + "/*/*.txt").zipWithIndex.map { case (k, v) => (v, k) }
     var getMVPLine = demo.filter(_._2.contains("round_mvp"))
 
     var getMVPLineKeys = getMVPLine.keys.map(x => x + 2).zipWithIndex
@@ -261,3 +261,6 @@ object PosFirstKillers extends spark.jobserver.SparkJob {
 
 
 }
+
+
+
