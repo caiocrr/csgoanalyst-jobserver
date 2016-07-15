@@ -104,8 +104,14 @@ $ sbt assembly
 >curl -H "Content-Type: application/json" -X POST -d '{"qtd":"10","camp":"Cologne 2015"}' '192.168.91.128:8090/jobs?appName=csgoanalyst&classPath=csgoanalyst.TopMVP'
 
 
+--------------------------------FINAL-------------------------------------------
 
+//ListMaps OK
+>curl -H "Content-Type: application/json" -X POST -d '{"camp":"MLG 2016"}' 'localhost:8090/jobs?appName=csgoanalyst&classPath=csgoanalyst.ListMaps'
 
+>curl -H "Content-Type: application/json" -X POST -d '{"camp":"Katowice 2015"}' 'localhost:8090/jobs?appName=csgoanalyst&classPath=csgoanalyst.ListMaps'
+
+>curl -H "Content-Type: application/json" -X POST -d '{"camp":"Cologne 2015"}' 'localhost:8090/jobs?appName=csgoanalyst&classPath=csgoanalyst.ListMaps'
 
 
 
