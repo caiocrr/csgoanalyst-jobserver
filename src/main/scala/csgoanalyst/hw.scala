@@ -254,8 +254,9 @@ object PosFirstKillers extends spark.jobserver.SparkJob {
       case (x, (y, z)) => y.trim
     }.filter(x => !x.contains("round_freeze_end")).
       map(line => line.split(',')).
-      map(fields => (fields(12).trim, fields(13).trim)).
-      collect()
+      map(fields => Array(fields(12).trim, fields(13).trim))
+      
+    firstKills.collect()
   }
 
 
