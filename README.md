@@ -17,7 +17,7 @@ $ sbt assembly
 
 //deploy jar(scala)
 
->curl --data-binary @csgoanalyst-jobserver/target/scala-2.10/csgoanalyst-jobserver_2.10-0.1-SNAPSHOT.jar localhost:8090/jars/csgoanalyst
+>curl --data-binary @csgoanalyst-jobserver/target/scala-2.10/csgoanalyst-jobserver-assembly-0.1-SNAPSHOT.jar localhost:8090/jars/csgoanalyst
 
 >curl 'localhost:8090/jars'
 
