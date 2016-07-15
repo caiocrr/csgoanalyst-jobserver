@@ -260,39 +260,3 @@ object PosFirstKillers extends spark.jobserver.SparkJob {
 
 
 }
-
-object PosFirstKillers extends spark.jobserver.SparkJob {
-
-  override def validate(sc: SparkContext, config: Config): spark.jobserver.SparkJobValidation = {
-    spark.jobserver.SparkJobValid
-  }
-
-  override def runJob(sc: SparkContext, config: Config): Any = {
-
-    val camp = config.getString("camp")
-    val qtd = config.getString("qtd").toInt
-
-    var demo = sc.textFile("/demo_manager/Katowice 2015/*.txt")
-    var getFreezeAndVictims = demo.filter(x => x.contains("round_freeze_end") || x.contains("victim")).zipWithIndex.map { case (k, v) => (v, k) }
-
-    //filter lines round_freeze_and
-    var getFreezeEnd = getFreezeAndVictims.filter(_._2.contains("round_freeze_end"))
-    //    
-    //    var getFreezeEnd = getFreezeAndVictims.filter{case (key, value) => value.contains("round_freeze_end") } 
-
-    var getFirstKillsLines = getFreezeEnd.keys.map(x => x + 1).zipWithIndex
-
-    val firstKills = getFreezeAndVictims.join(getFirstKillsLines).map {
-      case (x, (y, z)) => y.trim
-    }.filter(x => !x.contains("round_freeze_end")).
-      map(line => line.split(',')).
-      map(fields => (fields(12).trim, fields(13).trim)).
-      collect().
-      foreach(println)
-
-    //
-  }
-
-
-}
-
