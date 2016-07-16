@@ -118,9 +118,9 @@ $ sbt assembly
 
 
 //PosFirstKillers OK
->curl -H "Content-Type: application/json" -X POST -d '{"camp":"MLG 2016"}' 'localhost:8090/jobs?appName=csgoanalyst&classPath=csgoanalyst.PosFirstKillers'
+>curl -H "Content-Type: application/json" -X POST -d '{"qtd":"10", "camp":"Katowice 2015", "map":"de_cache"}' 'localhost:8090/jobs?appName=csgoanalyst&classPath=csgoanalyst.PosFirstKillers'
 
->curl -H "Content-Type: application/json" -X POST -d '{"camp":"Katowice 2015"}' 'localhost:8090/jobs?appName=csgoanalyst&classPath=csgoanalyst.PosFirstKillers'
+>curl -H "Content-Type: application/json" -X POST -d '{"qtd":"10", "camp":"MLG 2016", "map":"de_cache"}' 'localhost:8090/jobs?appName=csgoanalyst&classPath=csgoanalyst.PosFirstKillers'
 
 >curl -H "Content-Type: application/json" -X POST -d '{"qtd":"10", "camp":"Cologne 2015", "map":"de_cache"}' 'localhost:8090/jobs?appName=csgoanalyst&classPath=csgoanalyst.PosFirstKillers'
 
@@ -128,11 +128,11 @@ $ sbt assembly
 
 
 //PosSmokes
->curl -H "Content-Type: application/json" -X POST -d '{"qtd":"10", "camp":"Cologne 2015", "map":"de_cache"}' 'localhost:8090/jobs?appName=csgoanalyst&classPath=csgoanalyst.PosSmokes'
+>curl -H "Content-Type: application/json" -X POST -d '{"camp":"Cologne 2015", "map":"de_cache"}' 'localhost:8090/jobs?appName=csgoanalyst&classPath=csgoanalyst.PosSmokes'
 
->curl -H "Content-Type: application/json" -X POST -d '{"qtd":"10", "camp":"Cologne 2015", "map":"de_cache"}' 'localhost:8090/jobs?appName=csgoanalyst&classPath=csgoanalyst.PosSmokes'
+>curl -H "Content-Type: application/json" -X POST -d '{"camp":"Cologne 2015", "map":"de_cache"}' 'localhost:8090/jobs?appName=csgoanalyst&classPath=csgoanalyst.PosSmokes'
 
->curl -H "Content-Type: application/json" -X POST -d '{"qtd":"10", "camp":"Cologne 2015", "map":"de_cache"}' 'localhost:8090/jobs?appName=csgoanalyst&classPath=csgoanalyst.PosSmokes'
+>curl -H "Content-Type: application/json" -X POST -d '{"camp":"Cologne 2015", "map":"de_cache"}' 'localhost:8090/jobs?appName=csgoanalyst&classPath=csgoanalyst.PosSmokes'
 
 
 
