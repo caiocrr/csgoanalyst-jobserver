@@ -126,4 +126,25 @@ $ sbt assembly
 
 
 
+
+//PosSmokes
+>curl -H "Content-Type: application/json" -X POST -d '{"qtd":"10", "camp":"Cologne 2015", "map":"de_cache"}' 'localhost:8090/jobs?appName=csgoanalyst&classPath=csgoanalyst.PosSmokes'
+
+>curl -H "Content-Type: application/json" -X POST -d '{"qtd":"10", "camp":"Cologne 2015", "map":"de_cache"}' 'localhost:8090/jobs?appName=csgoanalyst&classPath=csgoanalyst.PosSmokes'
+
+>curl -H "Content-Type: application/json" -X POST -d '{"qtd":"10", "camp":"Cologne 2015", "map":"de_cache"}' 'localhost:8090/jobs?appName=csgoanalyst&classPath=csgoanalyst.PosSmokes'
+
+
+
+
+//PosMolotovs
+>curl -H "Content-Type: application/json" -X POST -d '{"qtd":"10", "camp":"Cologne 2015", "map":"de_cache"}' 'localhost:8090/jobs?appName=csgoanalyst&classPath=csgoanalyst.PosMolotovs'
+
+>curl -H "Content-Type: application/json" -X POST -d '{"qtd":"10", "camp":"Cologne 2015", "map":"de_cache"}' 'localhost:8090/jobs?appName=csgoanalyst&classPath=csgoanalyst.PosMolotovs'
+
+>curl -H "Content-Type: application/json" -X POST -d '{"qtd":"10", "camp":"Cologne 2015", "map":"de_cache"}' 'localhost:8090/jobs?appName=csgoanalyst&classPath=csgoanalyst.PosMolotovs'
+
+
+
+
 >files: /demo_manager/~
