@@ -262,7 +262,6 @@ object PosSmokes extends spark.jobserver.SparkJob {
   override def runJob(sc: SparkContext, config: Config): Any = {
 
     val camp = config.getString("camp")
-    val qtd = config.getString("qtd").toInt
     val map = config.getString("map")
 
     var demo = sc.textFile("/demo_manager/" + camp + "/" + map + "/*.txt").zipWithIndex.map { case (k, v) => (v, k) }
@@ -311,7 +310,6 @@ object PosMolotovs extends spark.jobserver.SparkJob {
   override def runJob(sc: SparkContext, config: Config): Any = {
 
     val camp = config.getString("camp")
-    val qtd = config.getString("qtd").toInt
     val map = config.getString("map")
 
     var demo = sc.textFile("/demo_manager/" + camp + "/" + map + "/*.txt").zipWithIndex.map { case (k, v) => (v, k) }
