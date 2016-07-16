@@ -300,7 +300,7 @@ object PosSmokes extends spark.jobserver.SparkJob {
 }
 
 
-object PosSmokes extends spark.jobserver.SparkJob {
+object PosMolotovs extends spark.jobserver.SparkJob {
 
   override def validate(sc: SparkContext, config: Config): spark.jobserver.SparkJobValidation = {
     spark.jobserver.SparkJobValid
