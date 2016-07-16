@@ -292,7 +292,9 @@ object PosSmokes extends spark.jobserver.SparkJob {
     
     val getSmokeXY = getSmokeX.join(getSmokeY).map {
       case (x, (y, z)) => Array(y,z)
-    }.collect()
+    }
+    
+    getSmokeXY.collect();
     
     
   }
@@ -339,7 +341,9 @@ object PosMolotovs extends spark.jobserver.SparkJob {
     
     val getSmokeXY = getSmokeX.join(getSmokeY).map {
       case (x, (y, z)) => Array(y,z)
-    }.collect()
+    }
+    
+    getSmokeXY.collect()
     
     
   }
