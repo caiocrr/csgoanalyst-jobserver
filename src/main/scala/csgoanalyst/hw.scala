@@ -28,7 +28,6 @@ object TopKillers extends spark.jobserver.SparkJob {
       filter(line => line.startsWith("victim")).
       filter(line => !line.contains("knife"))
 
-
     val attackersName = demo.map(line => line.split(',')).map(fields => (fields(10).trim, 1))
 
     var attackersCountDemo = attackersName.reduceByKey((v1, v2) => v1 + v2)
@@ -41,7 +40,6 @@ object TopKillers extends spark.jobserver.SparkJob {
   }
 
 }
-
 
 object KDESpec extends spark.jobserver.SparkJob {
 
@@ -59,7 +57,6 @@ object KDESpec extends spark.jobserver.SparkJob {
     var demo = sc.textFile("/demo_manager/" + camp + "/*/*.txt").
       filter(line => line.startsWith("victim")).
       filter(line => !line.contains("knife"))
-
 
     val attackersName = demo.map(line => line.split(',')).
       map(fields => (fields(10).trim, 1)).
@@ -85,7 +82,6 @@ object KDESpec extends spark.jobserver.SparkJob {
 
 }
 
-
 object TopKD extends spark.jobserver.SparkJob {
 
   override def validate(sc: SparkContext, config: Config): spark.jobserver.SparkJobValidation = {
@@ -102,7 +98,6 @@ object TopKD extends spark.jobserver.SparkJob {
     var demo = sc.textFile("/demo_manager/" + camp + "/*/*.txt").
       filter(line => line.startsWith("victim")).
       filter(line => !line.contains("knife"))
-
 
     val attackersName = demo.map(line => line.split(',')).
       map(fields => (fields(10).trim, 1))
@@ -125,7 +120,6 @@ object TopKD extends spark.jobserver.SparkJob {
   }
 
 }
-
 
 object ListPlayers extends spark.jobserver.SparkJob {
 
@@ -202,7 +196,6 @@ object ListCamps extends spark.jobserver.SparkJob {
 
 }
 
-
 object ListMaps extends spark.jobserver.SparkJob {
 
   override def validate(sc: SparkContext, config: Config): spark.jobserver.SparkJobValidation = {
@@ -210,9 +203,9 @@ object ListMaps extends spark.jobserver.SparkJob {
   }
 
   override def runJob(sc: SparkContext, config: Config): Any = {
-    
+
     val camp = config.getString("camp")
-    val directoryName = "/demo_manager/"+camp
+    val directoryName = "/demo_manager/" + camp
 
     val directory = new File(directoryName)
     val files = directory.listFiles // this is File[]
@@ -224,7 +217,6 @@ object ListMaps extends spark.jobserver.SparkJob {
       }
     dirNames.toList
   }
-
 
 }
 
@@ -240,7 +232,7 @@ object PosFirstKillers extends spark.jobserver.SparkJob {
     val qtd = config.getString("qtd").toInt
     val map = config.getString("map")
 
-    var demo = sc.textFile("/demo_manager/"+camp+"/"+map+"/*.txt")
+    var demo = sc.textFile("/demo_manager/" + camp + "/" + map + "/*.txt")
 
     //filter demo map    
     var getFreezeAndVictims = demo.filter(x => x.contains("round_freeze_end") || x.contains("victim")).zipWithIndex.map { case (k, v) => (v, k) }
@@ -255,12 +247,102 @@ object PosFirstKillers extends spark.jobserver.SparkJob {
     }.filter(x => !x.contains("round_freeze_end")).
       map(line => line.split(',')).
       map(fields => Array(fields(12).trim, fields(13).trim))
-      
+
     firstKills.collect()
   }
 
+}
+
+object PosSmokes extends spark.jobserver.SparkJob {
+
+  override def validate(sc: SparkContext, config: Config): spark.jobserver.SparkJobValidation = {
+    spark.jobserver.SparkJobValid
+  }
+
+  override def runJob(sc: SparkContext, config: Config): Any = {
+
+    val camp = config.getString("camp")
+    val qtd = config.getString("qtd").toInt
+    val map = config.getString("map")
+
+    var demo = sc.textFile("/demo_manager/" + camp + "/" + map + "/*.txt").zipWithIndex.map { case (k, v) => (v, k) }
+       var getSmokeLine = demo.filter(_._2.contains("smokegrenade_expired"))
+
+    var getSmokeXLine = getSmokeLine.keys.map(x => (x + 7, 1))
+    var getSmokeYLine = getSmokeLine.keys.map(x => (x + 8, 1))
+    
+    val getSmokeX = demo.join(getSmokeXLine).
+    map {
+      case (x, (y, z)) => y.trim
+    }.
+    filter(x => x.startsWith("x:")).
+    map(x => x.split(':')).
+    map(x => x(1).trim).
+    zipWithIndex.
+    map { case (k, v) => (v, k) }
+    
+    val getSmokeY = demo.join(getSmokeYLine).map {
+      case (x, (y, z)) => y.trim
+    }.
+    filter(x => x.startsWith("y:")).
+    map(x => x.split(':')).
+    map(x => x(1).trim).
+    zipWithIndex.
+    map { case (k, v) => (v, k) }
+    
+    val getSmokeXY = getSmokeX.join(getSmokeY).map {
+      case (x, (y, z)) => Array(y,z)
+    }.collect()
+    
+    
+  }
 
 }
 
 
+object PosSmokes extends spark.jobserver.SparkJob {
+
+  override def validate(sc: SparkContext, config: Config): spark.jobserver.SparkJobValidation = {
+    spark.jobserver.SparkJobValid
+  }
+
+  override def runJob(sc: SparkContext, config: Config): Any = {
+
+    val camp = config.getString("camp")
+    val qtd = config.getString("qtd").toInt
+    val map = config.getString("map")
+
+    var demo = sc.textFile("/demo_manager/" + camp + "/" + map + "/*.txt").zipWithIndex.map { case (k, v) => (v, k) }
+       var getSmokeLine = demo.filter(_._2.contains("inferno_startburn"))
+
+    var getSmokeXLine = getSmokeLine.keys.map(x => (x + 3, 1))
+    var getSmokeYLine = getSmokeLine.keys.map(x => (x + 4, 1))
+    
+    val getSmokeX = demo.join(getSmokeXLine).
+    map {
+      case (x, (y, z)) => y.trim
+    }.
+    filter(x => x.startsWith("x:")).
+    map(x => x.split(':')).
+    map(x => x(1).trim).
+    zipWithIndex.
+    map { case (k, v) => (v, k) }
+    
+    val getSmokeY = demo.join(getSmokeYLine).map {
+      case (x, (y, z)) => y.trim
+    }.
+    filter(x => x.startsWith("y:")).
+    map(x => x.split(':')).
+    map(x => x(1).trim).
+    zipWithIndex.
+    map { case (k, v) => (v, k) }
+    
+    val getSmokeXY = getSmokeX.join(getSmokeY).map {
+      case (x, (y, z)) => Array(y,z)
+    }.collect()
+    
+    
+  }
+
+}
 
